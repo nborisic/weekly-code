@@ -1,19 +1,8 @@
 import './App.scss';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Plx from 'react-plx';
 
 function App() {
-  // const [scrollPosition, setScrollPosition] = useState(window.pageYOffset);
-
-  // const listenToScroll = () => {
-  //   setScrollPosition(window.pageYOffset)
-  // }
-
-  // useEffect(() => {
-  //   window.addEventListener('scroll', listenToScroll)
-  // }, [])
-
-
   const viewBoxPlxData = [
     {
       start: 0,
@@ -548,7 +537,6 @@ const blackHolePlxData = [
         </clipPath>
       </defs>
     </svg> 
-      {/* <div className='counter'>{scrollPosition}</div> */}
       <Plx
         className='paralaxContainer'
         parallaxData={ viewBoxPlxData }
