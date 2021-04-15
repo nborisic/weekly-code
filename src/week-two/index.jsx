@@ -5,30 +5,31 @@ import './index.scss';
 
 function Gesture() {
     const cursorRef = useRef(null);
+    const wrapperRef = useRef(null);
 
     const [ canvasRef, resetImage ] = useCanvas();
 
     useEffect(() => {
-        document.addEventListener('mousedown', (e) => {
+        wrapperRef.current.addEventListener('mousedown', (e) => {
             cursorRef.current.style.opacity = 1;
             document.body.style.cursor = 'none';
         })
 
-        document.addEventListener('mousemove', (e) => {
+        wrapperRef.current.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
             cursorRef.current.style.left = x + 'px';
             cursorRef.current.style.top = y + 'px';
         })
 
-        document.addEventListener('mouseup', (e) => {
+        wrapperRef.current.addEventListener('mouseup', (e) => {
             cursorRef.current.style.opacity = 0;
             document.body.style.cursor = 'auto';
         })
     }, [])
 
     return (
-        <div className='week-two'>
+        <div ref={wrapperRef} className='week-two'>
             <div ref={cursorRef} className="cursor">
                 <div className='wrapper'>
                     <div className="red flame"></div>
