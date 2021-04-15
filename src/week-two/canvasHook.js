@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import image from '../assets/beograd-sad.webp';
 
 export function draw(ctx, location, canvasObj, frameCount = 0){
@@ -33,9 +33,11 @@ export function useCanvas(){
     function detectLeftButton(evt) {
         evt = evt || window.event;
         if ("buttons" in evt) {
+            // eslint-disable-next-line
             return evt.buttons == 1;
         }
         var button = evt.which || evt.button;
+        // eslint-disable-next-line
         return button == 1;
     }
     
@@ -69,6 +71,7 @@ export function useCanvas(){
        const handleMouseMove = (e) => {
             var brushPos = getClickPos(e.clientX, e.clientY);
             var leftBut = detectLeftButton(e);
+            // eslint-disable-next-line
             if (leftBut == 1) {
                 draw(ctx, brushPos, canvasObj);
             }
