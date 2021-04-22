@@ -8,7 +8,11 @@ const listInfo = [
     {
         name: 'week-two',
         link: '/gesture'
-    }
+    },
+    {
+        name: 'week-three',
+        link: '/letters'
+    },    
 ]
 
 export default function List() {

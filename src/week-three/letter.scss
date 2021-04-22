@@ -1,0 +1,46 @@
+.letter {
+    display: inline-block;
+    white-space: pre-wrap;
+    user-select: none;
+}
+
+
+.letterCorrect {
+    color: blue;
+}
+
+.letterActive {
+    position: relative;
+    &::before {
+        content: '|';
+        animation: pulse 1s infinite;
+        // position: absolute;
+        left: 0;
+    }
+    color: green;
+}
+
+.letterIncorrectGuess {
+    transform: translate3d(0, 0, 0);
+    color: red;
+    animation: shake 1s forwards;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0;
+    }
+    25%, 75%  {
+        opacity: 1;
+    }
+  }
+
+@keyframes shake {
+10%, 30%, 50%, 70%, 90% {
+    transform: translate3d(-1px, 0, 0);
+}
+
+20%, 40%, 60% , 80% {
+    transform: translate3d(1px, 0, 0);
+}
+}

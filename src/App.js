@@ -7,6 +7,7 @@ import React from 'react';
 import List from './List';
 import ScrollAnimation from './week-one';
 import Gesture from './week-two';
+import Letters from './week-three';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
       </Route>
       <Route exact path="/gesture">
         <Gesture />
+      </Route>
+      <Route exact path="/letters">
+        <Letters />
       </Route>
       </Switch>
     </Router>
