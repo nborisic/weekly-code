@@ -6,12 +6,10 @@ export const randomInt = (min, max) => {
 
 export const generateStyle = () => {
     return {
-        // marginLeft: `${randomInt(-7, 7)}px`,
-        fontSize: `${randomInt(16,20)}px`,
+        fontSize: `${randomInt(19,23)}px`,
         marginTop: `${randomInt(-3, 3)}px`,
         letterSpacing: `${randomInt(-3, 3)}px`,
         opacity: `${randomInt(60, 90) / 100}`,
-        // color: `rgb(${randomInt(0, 10)}, ${randomInt(0, 15)}, ${randomInt(0, 10)})`,
     }
 }
 

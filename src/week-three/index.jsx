@@ -5,6 +5,7 @@ import './index.scss';
 import { randomInt } from './util';
 import Radio from './radio';
 import EndGame from './gameEnd';
+import { ReactComponent as Refresh }  from '../assets/refresh.svg';
 var TEXT_DATA = require('./text.json');
 
 function Letters() {
@@ -120,6 +121,9 @@ function Letters() {
                 <div className='game'>
                     {showGame ?
                         <>
+                            <button onClick={resetGame} className='refresh'>
+                                <Refresh />
+                            </button>
                             <Countdown countdownEnd={countdownEnd} className='countdownCounter' />
                             <div>
                                 {wordArray.map((word, wordIndex) => {
@@ -132,7 +136,7 @@ function Letters() {
                             </div>  
                         </> :
                         <div className='startGame'>
-                            <span>Get your fingers ready</span>
+                            <h1 className='startGame-title'>Get your fingers ready</h1>
                             <button onClick={startGame} className="startGameButton">START</button>
                             <span>( use space for start, if you are a tryhard )</span>
                             <Radio setDifficulty={setDifficulty} difficulty={difficulty}/>
