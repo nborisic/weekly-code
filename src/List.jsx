@@ -12,7 +12,11 @@ const listInfo = [
     {
         name: 'week-three',
         link: '/letters'
-    },    
+    },   
+    {
+        name: 'week-four',
+        link: '/numbers'
+    } 
 ]
 
 export default function List() {

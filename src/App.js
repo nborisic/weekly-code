@@ -8,6 +8,7 @@ import List from './List';
 import ScrollAnimation from './week-one';
 import Gesture from './week-two';
 import Letters from './week-three';
+import Numbers from './week-four';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
       </Route>
       <Route exact path="/letters">
         <Letters />
+      </Route>
+      <Route exact path="/numbers">
+        <Numbers />
       </Route>
       </Switch>
     </Router>

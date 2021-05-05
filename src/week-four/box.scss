@@ -1,0 +1,12 @@
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 25%;
+    height:25%;
+    box-sizing: border-box;
+    outline: 1px solid blue;
+    outline-offset: -2px;
+    font-weight: bold;
+}
