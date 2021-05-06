@@ -14,6 +14,7 @@ const blankBoxValues = [
 
 const NumbersChallenge = () => {
     const [boxValues, setBoxValues] = useState(blankBoxValues);
+    const score = useRef(0);
     const [gameEnd, setGameEnd] = useState(false);
     const direction = useRef(null);
    
@@ -59,13 +60,17 @@ const NumbersChallenge = () => {
     }
 
     const sumArray = (array, dir) => {
-        let arrayCopy = cloneDeep(array);
+        let arrayCopy = [...array];
         const hasToFlip = dir === 'up' || dir === 'left';
         if (hasToFlip) {arrayCopy.reverse()}
         for (let i = arrayCopy.length; i > 0; i--) {
-            if(arrayCopy[i] === arrayCopy[i - 1]) {
+            if(arrayCopy[i] && arrayCopy[i - 1] && arrayCopy[i] === arrayCopy[i - 1]) {
                 arrayCopy[i] = arrayCopy[i] * 2;
                 arrayCopy[i - 1] = 0;
+                console.log('score.current', score.current);
+                console.log('arrayCopy[i]', i, arrayCopy[i]);
+                score.current += arrayCopy[i];
+                // debugger
             }
         }
         if (hasToFlip) {arrayCopy.reverse()}
@@ -122,11 +127,13 @@ const NumbersChallenge = () => {
     }
 
     const moveHorizontal = (dir) => {
+        console.log('move');
         setBoxValues((prevState) => {
             const prevStateCopy = [...prevState];
 
             for(let i = 0; i < prevStateCopy.length; i++) {
                 let movedArray = moveArray(prevStateCopy[i], dir);
+                // debugger
                 let summedArray = sumArray(movedArray, dir);
                 let finalArray = moveArray(summedArray, dir);
                 prevStateCopy[i] = finalArray;
@@ -143,6 +150,7 @@ const NumbersChallenge = () => {
     }
 
     const moveVertical = (dir) => {
+        console.log('move2');
         setBoxValues((prevState) => {
             const prevStateCopy = [...prevState];
             const tansValues = transValues(prevStateCopy);
@@ -167,6 +175,7 @@ const NumbersChallenge = () => {
     }
 
     const keyHandler = (e) => {
+        console.log('trigger');
         switch (e.key) {
             case 'ArrowRight':
                 moveHorizontal('right');
@@ -185,24 +194,34 @@ const NumbersChallenge = () => {
         }
     }
 
-    useEffect(() => {  
+    useEffect(() => {
         document.addEventListener('keyup',keyHandler);
+
+        // const startingNumbers = generateRandomNumbers(boxValues);
+        // setBoxValues(startingNumbers);
 
         return () => {
             document.removeEventListener('keyup',keyHandler)    
         }
     }, [boxValues])
 
+
     useEffect(() => {
+        // document.addEventListener('keyup',keyHandler);
+
         const startingNumbers = generateRandomNumbers(boxValues);
         setBoxValues(startingNumbers);
+
+        // return () => {
+        //     document.removeEventListener('keyup',keyHandler)    
+        // }
     }, [])
 
     return (
         <div>
         {gameEnd && <div>GAME END</div>}
+        <div>{score.current}</div>
         <div className='box-container'>
-            
             {boxValues.map((row, rowIndex) => row.map((value, colIndex) => <Box key={`${rowIndex}-${colIndex}`} direction={direction.current} boxValues={boxValues} value={value} row={rowIndex} col={colIndex} />))}
         </div>
         </div>

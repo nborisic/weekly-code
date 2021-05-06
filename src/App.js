@@ -9,6 +9,7 @@ import ScrollAnimation from './week-one';
 import Gesture from './week-two';
 import Letters from './week-three';
 import Numbers from './week-four';
+import Exit from './week-five';
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
       </Route>
       <Route exact path="/numbers">
         <Numbers />
+      </Route>
+      <Route exact path="/exit">
+        <Exit />
       </Route>
       </Switch>
     </Router>
