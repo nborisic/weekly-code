@@ -263,7 +263,7 @@ useEffect(() => {
             setPointerInfo("The pointer is locked. Press Esc to unlock.");
             document.addEventListener("mousemove", mousemoveCallback, false);
         } else {
-            setPointerInfo("The pointer is unlocked.");
+            setPointerInfo("The pointer is unlocked. Click to lock it");
             document.removeEventListener("mousemove", mousemoveCallback, false);
         }
     }
