@@ -21,7 +21,7 @@ useEffect(() => {
 	const ch = canvas.height = dotCanvas.height = window.innerHeight;
 
     let x = cw / 2;
-    let y = 3 * ch / 4;
+    let y = ch * .75;
 
 
     const portal1 = {
@@ -192,11 +192,11 @@ useEffect(() => {
         if (x < (dotCanvas.clientWidth / 4)) {
             x = (dotCanvas.clientWidth / 4);
         }
-        if (y > dotCanvas.clientHeight * 0.9) {
-            y = dotCanvas.clientHeight * 0.9;
+        if (y > dotCanvas.clientHeight * 0.83) {
+            y = dotCanvas.clientHeight * 0.83;
         }
-        if (y < dotCanvas.clientHeight * 0.1) {
-            y = dotCanvas.clientHeight * 0.1;
+        if (y < dotCanvas.clientHeight * 0.23) {
+            y = dotCanvas.clientHeight * 0.23;
         }
 
         const img = new Image();
