@@ -21,7 +21,7 @@ useEffect(() => {
 	const ch = canvas.height = dotCanvas.height = window.innerHeight;
 
     let x = cw / 2;
-    let y = ch / 2;
+    let y = 3 * ch / 4;
 
 
     const portal1 = {
