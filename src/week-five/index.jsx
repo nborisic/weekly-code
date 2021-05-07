@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import image from '../assets/companion-cube.png';
 
 import './index.scss';
@@ -8,13 +8,17 @@ const dToR = function(degrees) {
 };
 
 const Exit = () => {
+    const [pointerInfo, setPointerInfo] = useState('The pointer is unlocked. Click to lock it')
+
 useEffect(() => {
-    const divObj = document.getElementById("logdiv");
+    const dotCanvas = document.getElementById('dot');
+    const dotCtx = dotCanvas.getContext('2d');
+
     
     const canvas = document.getElementById('portal');
     const ctx = canvas.getContext('2d');
-    const cw = canvas.width = window.innerWidth;
-	const ch = canvas.height = window.innerHeight;
+    const cw = canvas.width = dotCanvas.width = window.innerWidth;
+	const ch = canvas.height = dotCanvas.height = window.innerHeight;
 
     let x = cw / 2;
     let y = ch / 2;
@@ -108,43 +112,7 @@ useEffect(() => {
         return gradient;
     }
 
-
-    const gradient1 = getGradientColor(portal1);
-    const gradient2 = getGradientGlow(portal1);
-
-    const gradient3 = getGradientColor(portal2);
-    const gradient4 = getGradientGlow(portal2);
-
-    const drawDot = () => {
-        if (x < (canvas.clientWidth / 4) && y > (canvas.clientHeight * .375) && y < (canvas.clientHeight * .625)) {
-            x = 3 * (canvas.clientWidth / 4)
-        }
-        if (x > (3 * canvas.clientWidth / 4) && y > (canvas.clientHeight * .375) && y < (canvas.clientHeight * .625)) {
-            x = (canvas.clientWidth / 4)
-        }
-        if (x > canvas.clientWidth) {
-            x = 0;
-        }
-        if (x < -10) {
-            x = canvas.clientWidth;
-        }
-        if (y > canvas.clientHeight) {
-            y = canvas.clientHeight;
-        }
-        if (y < 0) {
-            y = 0;
-        }
-
-        // const img = new Image();
-        // img.src = image;
-        // img.width = 200
-        // img.height = 200
-
-        // img.onload = () => {
-        //     ctx.imageSmoothingEnabled = false;
-        //     ctx.drawImage(img, x, y, 200, 200);
-        // };
-
+    const renderWalls = () => {
         ctx.fillStyle = "#809aab";
         ctx.strokeStyle = "#809aab";
 
@@ -202,15 +170,46 @@ useEffect(() => {
         ctx.strokeStyle = '#738a99';
         ctx.stroke();
         ctx.fill();
-       
-        ctx.fillStyle = "blue";
-        ctx.fillStyle = "aquamarine";
+    }
 
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, dToR(360), true);
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        ctx.fill();
+
+    const gradient1 = getGradientColor(portal1);
+    const gradient2 = getGradientGlow(portal1);
+
+    const gradient3 = getGradientColor(portal2);
+    const gradient4 = getGradientGlow(portal2);
+
+    const drawDot = () => {
+        if (x < (dotCanvas.clientWidth / 4) && y > (dotCanvas.clientHeight * .375) && y < (dotCanvas.clientHeight * .625)) {
+            x = 3 * (dotCanvas.clientWidth / 4)
+        }
+        if (x > (3 * dotCanvas.clientWidth / 4) && y > (dotCanvas.clientHeight * .375) && y < (dotCanvas.clientHeight * .625)) {
+            x = (dotCanvas.clientWidth / 4)
+        }
+        if (x > (3 * dotCanvas.clientWidth / 4)) {
+            x = (3 * dotCanvas.clientWidth / 4);
+        }
+        if (x < (dotCanvas.clientWidth / 4)) {
+            x = (dotCanvas.clientWidth / 4);
+        }
+        if (y > dotCanvas.clientHeight * 0.9) {
+            y = dotCanvas.clientHeight * 0.9;
+        }
+        if (y < dotCanvas.clientHeight * 0.1) {
+            y = dotCanvas.clientHeight * 0.1;
+        }
+
+        const img = new Image();
+        img.src = image;
+        img.width = 20;
+        img.height = 20;
+
+
+        img.onload = () => {
+            dotCtx.clearRect(0,0,cw,ch);
+            dotCtx.imageSmoothingEnabled = false;
+            dotCtx.drawImage(img, x - 25, y - 25, 50, 50);
+        };
     }
 
   
@@ -221,7 +220,7 @@ useEffect(() => {
         ctx.shadowBlur = portal1.blur;
         ctx.lineCap = 'round'
 
-        drawDot()
+        renderWalls();
         renderCircle(portal1, gradient1, 0, 0);
         renderCircle(portal1, gradient1, +15, 100);
         renderCircle(portal1, gradient1, -15, 200);
@@ -245,6 +244,7 @@ useEffect(() => {
             } else {
                 circleRotation = 0; 
             }
+            drawDot()
                 drawCircle(circleRotation);
             }
         )
@@ -252,18 +252,18 @@ useEffect(() => {
 
     drawCircle();
 
-    canvas.onclick = function() {
-        canvas.requestPointerLock();
+    dotCanvas.onclick = function() {
+        dotCanvas.requestPointerLock();
     }
 
     document.addEventListener('pointerlockchange', lockChangeLog, false);
 
     function lockChangeLog() {
-        if (document.pointerLockElement === canvas) {
-            divObj.innerHTML = "The pointer is locked. Press Esc to unlock.";
+        if (document.pointerLockElement === dotCanvas) {
+            setPointerInfo("The pointer is locked. Press Esc to unlock.");
             document.addEventListener("mousemove", mousemoveCallback, false);
         } else {
-            divObj.innerHTML = "The pointer is unlocked.";
+            setPointerInfo("The pointer is unlocked.");
             document.removeEventListener("mousemove", mousemoveCallback, false);
         }
     }
@@ -280,16 +280,18 @@ useEffect(() => {
 
 
     return (
-        <>
-            <div className="canvas-wrapper">
-                <canvas width="590" height="100" id="portal">
-                Your browser does not support HTML5 canvas
-                </canvas>
+        <div className="canvas-wrapper">
+            <canvas id="portal">
+            Your browser does not support HTML5 canvas
+            </canvas>
+            <canvas id="dot">
+            Your browser does not support HTML5 canvas
+            </canvas>
+
+            <div className="pointer-info">
+                {pointerInfo}
             </div>
-            <div id="logdiv">
-                The pointer in unlocked.
-            </div>
-        </>
+        </div>
     )
 }
 

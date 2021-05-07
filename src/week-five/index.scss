@@ -1,5 +1,21 @@
 canvas {
     display: block;
     margin: 0 auto;
-    border: 2px solid black;
   }
+
+.canvas-container {
+  position: relative;
+}
+
+#dot {
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+}
+
+.pointer-info {
+  position: absolute;
+  top: 0;
+  color: white;
+  font-weight: bold;
+}
