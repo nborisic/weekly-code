@@ -20,6 +20,10 @@ const listInfo = [
     {
         name: 'week-five',
         link: '/exit'
+    },
+    {
+        name: 'week-six',
+        link: '/space'
     } 
 ]
 

@@ -10,6 +10,7 @@ import Gesture from './week-two';
 import Letters from './week-three';
 import Numbers from './week-four';
 import Exit from './week-five';
+import Space from './week-six';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
       </Route>
       <Route exact path="/exit">
         <Exit />
+      </Route>
+      <Route exact path="/space">
+        <Space />
       </Route>
       </Switch>
     </Router>
