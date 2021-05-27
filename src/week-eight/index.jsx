@@ -184,15 +184,10 @@ const Physics = () => {
         <div style={{position: "absolute"}}>
           <div>Click and drag a particle</div>
           <div>
-            <label htmlFor="particles"># of particles</label>
-            <select id="particles" onChange={(e) => setParticlesCount(parseInt(e.target.value, 10))} value={particlesCount}>
-              <option>50</option>
-              <option>100</option>
-              <option>200</option>
-              <option>500</option>
-            </select>
+            <label htmlFor="particles"># of particles: </label>
+            <input  type="number" id="particles" min="1" max="400" onChange={(e) => setParticlesCount(parseInt(e.target.value, 10))} value={particlesCount} />
             <div>
-            <label htmlFor="speed">Particle speed (1-5):</label>
+            <label htmlFor="speed">Particle speed (1-5): </label>
             <input type="number" id="speed"
               min="1" max="5" value={particleSpeed} onChange={(e) => setParticleSpeed(e.target.value)} />
             </div>
