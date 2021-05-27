@@ -24,6 +24,10 @@ const listInfo = [
     {
         name: 'week-six',
         link: '/space'
+    },
+    {
+        name: 'week-eight',
+        link: '/physics'
     } 
 ]
 
