@@ -182,6 +182,7 @@ const Physics = () => {
     return (
       <>
         <div style={{position: "absolute"}}>
+          <div>Click and drag a particle</div>
           <div>
             <label htmlFor="particles"># of particles</label>
             <select id="particles" onChange={(e) => setParticlesCount(parseInt(e.target.value, 10))} value={particlesCount}>
