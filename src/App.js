@@ -12,6 +12,7 @@ import Numbers from './week-four';
 import Exit from './week-five';
 import Space from './week-six';
 import Physics from './week-eight';
+import Depth from './week-nine';
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
       </Route>
       <Route exact path="/physics">
         <Physics />
+      </Route>
+      <Route exact path="/depth">
+        <Depth />
       </Route>
       </Switch>
     </Router>

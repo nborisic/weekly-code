@@ -28,7 +28,11 @@ const listInfo = [
     {
         name: 'week-eight',
         link: '/physics'
-    } 
+    },
+    {
+        name: 'week-nine',
+        link: '/depth'
+    }  
 ]
 
 export default function List() {

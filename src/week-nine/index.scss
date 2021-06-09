@@ -1,0 +1,76 @@
+.frame {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+figure {
+  width: 280px;
+  height: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -140px;
+  margin-left: -140px;
+  transform-style: preserve-3d;
+  perspective: 190px;
+}
+
+.mask {
+    position: relative;
+    width: 100vh;
+    height: 100vh;
+    clip-path: circle(50% at 50% 50%);
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-origin: center;
+}
+
+.face div {
+  border: 2px solid red;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  filter: blur(5px);
+  transition: all .5s; 
+}
+
+.clear {
+    filter: blur(0px) !important
+}
+
+.left {
+  transform: rotateY(-90deg) translate3d(0, 0, 140px) rotate(90deg);
+}
+.right {
+  transform: rotateY(90deg) translate3d(0, 0, 140px) rotate(-90deg);
+}
+.back {
+  transform: rotateY(180deg) translate3d(0, 0, 140px);
+}
+.top {
+  transform: rotateX(90deg) translate3d(0, 0, 140px) rotate(180deg);
+}
+.bottom {
+  transform: rotateX(-90deg) translate3d(0, 0, 140px);
+}
+
+.lens {
+    position: absolute;
+    height: 100vh;
+    width: 100vh;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/35984/lens_cz.png');
+    background-size: contain;
+    z-index: 100;
+    background-repeat: no-repeat;
+    top: 0;
+}
